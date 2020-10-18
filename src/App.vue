@@ -2,6 +2,12 @@
   <router-view />
 </template>
 
+<script>
+    export default {
+    name: 'App',
+    }
+</script>
+
 <style>
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -27,6 +33,10 @@
   article, aside, details, figcaption, figure, 
   footer, header, hgroup, menu, nav, section {
     display: block;
+  }
+
+  html {
+    overflow: hidden;
   }
 
   body {
