@@ -7,7 +7,9 @@
         <input type="email" name="email" id="email" v-model="email">
         <label for="password">Hasło</label>
         <input type="password" name="password" id="password" v-model="password">
-        <button type="submit">Zaloguj</button>
+        <label for="repeat_password">Powtórz hasło</label>
+        <input type="password" name="repeat_password" id="repeat_password" v-model="repeat_password">
+        <button type="submit">Zarejestruj</button>
       </form>
   </section>
 </template>
@@ -16,25 +18,25 @@
 const axios = require('axios')
 
 export default {
-  name: 'Login',
+  name: 'Register',
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      repeat_password: ""
     }
   },
   methods: {
       test() {
         this.$router.push('welcome');
       },
-      //TODO: Refactor
       onSubmit() {
         let data = this
 
-        if (data.username != '' && data.password != '') {
+        if ((data.username != '' && data.password != '') && (data.password === data.repeat_password)) {
           axios({
             method: 'post',
-            url: 'http://localhost:3000/api/users/login',
+            url: 'http://localhost:3000/api/users/register',
             data: {
               email: data.email,
               password: data.password
