@@ -1,7 +1,5 @@
 <template>
   <section>
-      <button @click="test">Home</button>
-
       <form @submit.prevent="onSubmit">
         <!-- <label for="email">E-mail</label> -->
         <input type="email" placeholder="E-mail" name="email" id="email" v-model="email">
@@ -19,15 +17,11 @@ export default {
   name: 'Login',
   data() {
     return {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     }
   },
   methods: {
-      test() {
-        this.$router.push('welcome');
-      },
-      //TODO: Refactor
       onSubmit() {
         let data = this
 

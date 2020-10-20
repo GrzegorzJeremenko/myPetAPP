@@ -16,8 +16,47 @@
                 <h3>{{ pages[pageNow].desc }}</h3>
             </div>
         </div>
-        <div>
-            
+        <div id="bottom">
+            <div class="mid"></div>
+            <div class="mid">
+                <i 
+                    class="icon" 
+                    v-if="pageNow == 0"
+                >
+                    &#xf111;
+                </i>
+                <i 
+                    class="icon" 
+                    v-else
+                >
+                    &#xf10c;
+                </i>
+                <i 
+                    class="icon" 
+                    v-if="pageNow == 1"
+                >
+                    &#xf111;
+                </i>
+                <i 
+                    class="icon" 
+                    v-else
+                >
+                    &#xf10c;
+                </i>
+                <i 
+                    class="icon" 
+                    v-if="pageNow == 2"
+                >
+                    &#xf111;
+                </i>
+                <i 
+                    class="icon" 
+                    v-else
+                >
+                    &#xf10c;
+                </i>
+            </div>
+            <div class="mid"></div>
         </div>
     </section>
 </template>
@@ -49,7 +88,14 @@
         },
         methods: {
             next() {
-                this.pageNow++;
+                if(this.pageNow < 2) {
+                    document.getElementById('page').style.opacity = "0";
+                    setTimeout((scope) => { scope.pageNow++; }, 250, this);
+
+                    setTimeout(() => { document.getElementById('page').style.opacity = "1"; }, 300);
+                } else {
+                    this.$router.push('/login');
+                }
             }
         },
         computed: {
@@ -80,6 +126,23 @@
         align-items: flex-end;
     }
 
+    section div#bottom {
+        width: 100%;
+        height: 10%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    section div#bottom div.mid {
+        width: 33%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        color: #34495e;
+    }
+
     section div#top button {
         background: none;
         border: none;
@@ -96,6 +159,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        transition: ease opacity 250ms;
     }
 
     section div#page img#p1 {

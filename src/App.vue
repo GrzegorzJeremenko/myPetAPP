@@ -62,4 +62,31 @@
     border-collapse: collapse;
     border-spacing: 0;
   }
+  @font-face {
+    font-family: 'fontello';
+    src: url('./font/fontello.eot?57214410');
+    src: url('./font/fontello.eot?57214410#iefix') format('embedded-opentype'),
+          url('./font/fontello.woff?57214410') format('woff'),
+          url('./font/fontello.ttf?57214410') format('truetype'),
+          url('./font/fontello.svg?57214410#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .icon
+  {
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    margin-left: .2em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 </style>
