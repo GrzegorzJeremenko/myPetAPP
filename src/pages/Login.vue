@@ -1,11 +1,11 @@
 <template>
   <section>
       <form @submit.prevent="onSubmit">
-        <label for="email">E-mail</label>
-        <input type="email" name="email" id="email" v-model="email">
-        <label for="password">Hasło</label>
-        <input type="password" name="password" id="password" v-model="password">
-        <button type="submit">Zaloguj</button>
+        <!-- <label for="email">E-mail</label> -->
+        <input type="email" placeholder="E-mail" name="email" id="email" v-model="email">
+        <!-- <label for="password">Hasło</label> -->
+        <input type="password" placeholder="Hasło" name="password" id="password" v-model="password">
+        <button type="submit">Zaloguj się</button>
       </form>
   </section>
 </template>
@@ -28,7 +28,7 @@ export default {
         if (data.username != '' && data.password != '') {
           axios({
             method: 'post',
-            url: 'http://localhost:3000/api/users/login',
+            url: 'https://mypet-api.herokuapp.com/api/users/login',
             data: {
               email: data.email,
               password: data.password
@@ -50,5 +50,34 @@ export default {
 </script>
 
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.5rem;
+  }
+
+  input {
+    border: 2px solid lightgray;
+    border-radius: 11px;
+    height: 1.5rem;
+    letter-spacing: .7px;
+    padding: 8px 16px;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    outline: none;
+  }
+
+  button {
+    /* background-color: rgba(239, 239, 239, 0.904); */
+    color: #fff;
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 24px;
+    font-weight: 600;
+    letter-spacing: .7px;
+    height: 2.5rem;
+    margin: 0.5rem 0;
+  }
 </style>

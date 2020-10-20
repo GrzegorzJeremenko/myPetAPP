@@ -9,8 +9,8 @@ Vue.use(Router)
 
 export const router = new Router({
     routes: [
-        { path: '/welcome', component: Welcome },
         { path: '/', component: Home },
+        { path: '/welcome', component: Welcome },
         { path: '/login', component: Login },
         { path: '/register', component: Register },
     
@@ -19,7 +19,11 @@ export const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+<<<<<<< HEAD
+    const publicPages = ['/welcome', '/login', '/register']
+=======
     const publicPages = ['/login', '/register', '/welcome']
+>>>>>>> c215add0a04026800d5f7abd47a9b7dd4eb371e2
     const authRequired = !publicPages.includes(to.path)
     const loggedIn = localStorage.getItem('user')
 
