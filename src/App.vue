@@ -67,7 +67,6 @@
     line-height: 1;
     margin: 0 !important;
     font-family: 'Open Sans', sans-serif;
-    background-color: rgb(85, 22, 118);
   }
 
   ol, ul {

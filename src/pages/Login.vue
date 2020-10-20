@@ -58,7 +58,6 @@ export default {
 
   section {
     position: fixed;
-    background-color: #fff;
     width: 100vw;
     height: 100vh;
   }

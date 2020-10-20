@@ -18,7 +18,6 @@
 
 <style scoped>
   section#list {
-    background-color: #fff;
     width: 100vw;
     min-height: 200vh;
     display: flex;

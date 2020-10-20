@@ -1,6 +1,10 @@
 <template>
   <section id="waterWidget">
     <i class="icon">&#xE804;</i>
+    <div id="data">
+      <h1>Pimpek</h1>
+      <h2>Pił dziś 3 razy</h2>
+    </div>
   </section>
 </template>
 
@@ -23,6 +27,20 @@
     display: flex;
     flex-direction: row;
     margin: 20px 0 0 0;
+  }
+
+  section#waterWidget div#data {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 0 20px;
+  }
+
+  section#waterWidget div#data h1 {
+    font-size: 20px;
+  }
+  section#waterWidget div#data h2 {
+    font-size: 16px;
+    margin: 5px 0 0 0;
   }
 
   section#waterWidget i {
