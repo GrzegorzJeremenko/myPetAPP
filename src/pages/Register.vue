@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div></div>
+    <div>myPet - Rejestracja</div>
     <h1>Witamy</h1>
       <form @submit.prevent="onSubmit">
         <input type="email" placeholder="E-mail" name="email" id="email" v-model="email">
@@ -26,13 +26,10 @@ export default {
     }
   },
   methods: {
-      test() {
-        this.$router.push('welcome');
-      },
       onSubmit() {
         let data = this
 
-        if ((data.username != '' && data.password != '') && (data.password === data.repeat_password)) {
+        if ((data.email != '' && data.password != '') && (data.password === data.repeat_password)) {
           axios({
             method: 'post',
             url: 'http://localhost:3000/api/users/register',
@@ -59,10 +56,20 @@ export default {
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+  section {
+    position: fixed;
+    background-color: #fff;
+    width: 100vw;
+    height: 100vh;
+  }
+
   div {
     color: #fff;
     background-color: rgb(85, 22, 118);
     height: 4rem;
+    text-align: center;
+    line-height: 4rem;
+    font-size: 1rem;
   }
 
   form {

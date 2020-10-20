@@ -25,12 +25,6 @@
       "src": "typicons"
     },
     {
-      "uid": "7222571caa5c15f83dcfd447c58d68d9",
-      "css": "search",
-      "code": 59393,
-      "src": "entypo"
-    },
-    {
       "uid": "e99461abfef3923546da8d745372c995",
       "css": "cog",
       "code": 59394,
@@ -46,6 +40,30 @@
       "uid": "55605ca79a65def1a9c300037ff1d0d5",
       "css": "paw",
       "code": 61872,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "cd21cbfb28ad4d903cede582157f65dc",
+      "css": "bell",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "36a1cee80657a9c66e8384dd57bed66c",
+      "css": "water",
+      "code": 59396,
+      "src": "entypo"
+    },
+    {
+      "uid": "30b79160618d99ce798e4bd11cafe3fe",
+      "css": "food",
+      "code": 61685,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d73eceadda1f594cec0536087539afbf",
+      "css": "heart",
+      "code": 59397,
       "src": "fontawesome"
     }
   ]

@@ -1,7 +1,6 @@
 <template>
-    <section id="menuBar">
-        <div 
-            class="option"
+    <section>
+        <div
             v-for="option in options"
             v-on:click="change(option.pageName, option.id)"
             :key="option.id"
@@ -27,7 +26,7 @@
 
 <script>
   export default {
-    name: 'Home',
+    name: 'MenuBar',
     data() {
         return {
             options: [
@@ -78,7 +77,7 @@
 </script>
 
 <style scoped>
-    section#menuBar {
+    section {
         position: fixed;
         top: calc(100% - 60px);
         width: 100%;
@@ -90,9 +89,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        background-color: #fff;
     }
 
-    section#menuBar div.option {
+    div {
         width: 25%;
         display: flex;
         flex-direction: column;
@@ -101,15 +101,16 @@
         cursor: pointer;
     }
 
-    section#menuBar div.option i {
+    i {
+        width: 20px;
+        height: 20px;
         font-size: 20px;
         transition: ease color 250ms;
     }
 
-    section#menuBar div.option h1 {
+    h1 {
         font-size: 12px;
         margin: 5px 0 0 0;
         transition: ease color 250ms;
     }
-
 </style>

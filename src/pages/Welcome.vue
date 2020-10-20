@@ -96,7 +96,6 @@
                 if(this.pageNow < 2) {
                     document.getElementById('page').style.opacity = "0";
                     setTimeout((scope) => { scope.pageNow++; }, 250, this);
-
                     setTimeout(() => { document.getElementById('page').style.opacity = "1"; }, 300);
                 } else {
                     this.$router.push('/login');
@@ -118,6 +117,7 @@
         height: 100vh;
         display: flex;
         flex-direction: column;
+        background-color: #fff;
     }
 
     section div#top {

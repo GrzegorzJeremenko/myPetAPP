@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div></div>
+    <div>myPet - Logowanie</div>
     <h1>Witamy</h1>
     <form @submit.prevent="onSubmit">
       <!-- <label for="email">E-mail</label> -->
@@ -29,7 +29,7 @@ export default {
       onSubmit() {
         let data = this
 
-        if (data.username != '' && data.password != '') {
+        if (data.email != '' && data.password != '') {
           axios({
             method: 'post',
             url: 'https://mypet-api.herokuapp.com/api/users/login',
@@ -56,10 +56,20 @@ export default {
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+  section {
+    position: fixed;
+    background-color: #fff;
+    width: 100vw;
+    height: 100vh;
+  }
+
   div {
     color: #fff;
     background-color: rgb(85, 22, 118);
     height: 4rem;
+    text-align: center;
+    line-height: 4rem;
+    font-size: 1rem;
   }
 
   form {

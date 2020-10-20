@@ -1,16 +1,24 @@
 <template>
-  <section id="app">
-    <router-view />
-    <menu-bar v-show="checkLogin()" />
+  <section>
+    <profile-bar v-show="checkLogin" />
+    <transition
+      name="slide-left"
+      mode="out-in"
+    >
+      <router-view />
+    </transition>
+    <menu-bar v-show="checkLogin" />
   </section>
 </template>
 
 <script>
+  import ProfileBar from './components/ProfileBar.vue';
   import MenuBar from './components/MenuBar.vue';
 
   export default {
     name: 'App',
     components: {
+      ProfileBar,
       MenuBar
     },
     methods: {
@@ -59,6 +67,7 @@
     line-height: 1;
     margin: 0 !important;
     font-family: 'Open Sans', sans-serif;
+    background-color: rgb(85, 22, 118);
   }
 
   ol, ul {
@@ -79,6 +88,7 @@
     border-collapse: collapse;
     border-spacing: 0;
   }
+
   @font-face {
     font-family: 'fontello';
     src: url('./font/fontello.eot?57214410');
@@ -89,6 +99,7 @@
     font-weight: normal;
     font-style: normal;
   }
+
   .icon
   {
     font-family: "fontello";
@@ -97,13 +108,32 @@
     display: inline-block;
     text-decoration: inherit;
     width: 1em;
-    margin-right: .2em;
-    text-align: center;
     font-variant: normal;
     text-transform: none;
-    line-height: 1em;
-    margin-left: .2em;
+    margin-left: .1em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .slide-left-enter-active,
+  .slide-left-leave-active,
+  .slide-right-enter-active,
+  .slide-right-leave-active {
+    transition-duration: 0.5s;
+    transition-property: height, opacity, transform;
+    transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+    overflow: hidden;
+  }
+
+  .slide-left-enter,
+  .slide-right-leave-active {
+    opacity: 0;
+    transform: translate(100vw, 0);
+  }
+
+  .slide-left-leave-active,
+  .slide-right-enter {
+    opacity: 0;
+    transform: translate(-100vw, 0);
   }
 </style>
