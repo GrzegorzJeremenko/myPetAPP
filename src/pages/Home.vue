@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <button @click="test">Home</button>
+    testhome
   </div>
 </template>
 
@@ -8,9 +8,6 @@
   export default {
     name: 'Home',
     methods: {
-      test() {
-        this.$router.push('welcome');
-      }
     }
   }
 

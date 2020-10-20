@@ -1,14 +1,30 @@
 <template>
-  <router-view />
+  <section id="app">
+    <router-view />
+    <menu-bar v-show="checkLogin()" />
+  </section>
 </template>
 
 <script>
-    export default {
+  import MenuBar from './components/MenuBar.vue';
+
+  export default {
     name: 'App',
+    components: {
+      MenuBar
+    },
+    methods: {
+      checkLogin() {
+        if (localStorage.getItem('user') === null) return 0;
+        else return 1;
+      }
     }
+  }
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -42,6 +58,7 @@
   body {
     line-height: 1;
     margin: 0 !important;
+    font-family: 'Open Sans', sans-serif;
   }
 
   ol, ul {

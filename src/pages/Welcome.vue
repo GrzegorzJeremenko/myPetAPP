@@ -112,15 +112,12 @@
 </script>
 
 <style scoped>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
-
     section {
         position: fixed;
         width: 100vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
-        font-family: 'Open Sans', sans-serif;
     }
 
     section div#top {
