@@ -8,7 +8,6 @@ import Welcome from './pages/Welcome.vue'
 Vue.use(Router)
 
 export const router = new Router({
-    mode: 'history',
     routes: [
         { path: '/welcome', component: Welcome },
         { path: '/', component: Home },

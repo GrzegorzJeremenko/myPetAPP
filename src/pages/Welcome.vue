@@ -56,7 +56,12 @@
                     &#xf10c;
                 </i>
             </div>
-            <div class="mid"></div>
+            <div 
+                class="mid"
+                style="justify-content: flex-end;"
+            >
+                <img src="../assets/logo.png" />
+            </div>
         </div>
     </section>
 </template>
@@ -141,6 +146,12 @@
         flex-direction: row;
         justify-content: center;
         color: #34495e;
+    }
+
+    section div#bottom div.mid img {
+        width: 60px;
+        height: 60px;
+        margin: 0 10px 0 0;
     }
 
     section div#top button {
