@@ -1,16 +1,15 @@
 <template>
   <section>
-      <button @click="test">Home</button>
-
+    <div></div>
+    <h1>Witamy</h1>
       <form @submit.prevent="onSubmit">
-        <!-- <label for="email">E-mail</label> -->
         <input type="email" placeholder="E-mail" name="email" id="email" v-model="email">
-        <!-- <label for="password">Hasło</label> -->
         <input type="password" placeholder="Hasło" name="password" id="password" v-model="password">
-        <!-- <label for="repeat_password">Powtórz hasło</label> -->
         <input type="password" placeholder="Powtórz hasło" name="repeat_password" id="repeat_password" v-model="repeat_password">
-        <button type="submit">Zarejestruj</button>
+        <button type="submit">Zarejestruj się</button>
       </form>
+
+      <p>Masz konto? <router-link to="/login">Zaloguj się</router-link></p>
   </section>
 </template>
 
@@ -60,33 +59,57 @@ export default {
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+  div {
+    color: #fff;
+    background-color: rgb(85, 22, 118);
+    height: 4rem;
+  }
+
   form {
     display: flex;
     flex-direction: column;
     margin: 0 1.5rem;
   }
 
+  h1 {
+    color: rgb(85, 22, 118);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 1rem 1.5rem;
+  }
+
   input {
-    /* border: none; */
-    border: 2px solid lightgray;
-    border-radius: 11px;
+    border: none;
+    border-bottom: 2px solid lightgray;
     height: 1.5rem;
     letter-spacing: .7px;
-    padding: 8px 16px;
+    padding: 8px 10px;
     margin: 0.5rem 0;
     font-size: 0.9rem;
     outline: none;
   }
 
   button {
-    /* background-color: rgba(239, 239, 239, 0.904); */
     color: #fff;
-    background-color: #2ecc71;
+    background-color: rgb(85, 22, 118);
     border: none;
-    border-radius: 24px;
-    font-weight: 600;
+    border-radius: 14px;
+    font-size: 0.9rem;
+    font-weight: 400;
     letter-spacing: .7px;
-    height: 2.5rem;
+    height: 2.75rem;
     margin: 0.5rem 0;
+  }
+
+  p {
+    bottom: 2.5rem;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+  }
+
+  a {
+    color: rgb(85, 22, 118);
+    text-decoration: none;
   }
 </style>
