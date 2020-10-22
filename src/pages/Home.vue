@@ -1,16 +1,24 @@
 <template>
   <section id="list">
     <water-widget />
+    <button @click="logout">Wyloguj</button>
   </section>
 </template>
 
 <script>
   import WaterWidget from '../components/WaterWidget.vue';
+  const auth = require('../api')
 
   export default {
     name: 'Home',
     components: {
       WaterWidget
+    },
+    methods: {
+      logout() {
+        auth.authentication.logout()
+        this.$router.push('/login')
+      }
     }
   }
 

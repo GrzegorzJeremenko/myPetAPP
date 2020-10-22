@@ -1,13 +1,13 @@
 <template>
   <section>
-    <profile-bar v-show="checkLogin" />
+    <profile-bar v-if="checkLogin()" />
     <transition
       name="slide-left"
       mode="out-in"
     >
       <router-view />
     </transition>
-    <menu-bar v-show="checkLogin" />
+    <menu-bar v-if="checkLogin()" />
   </section>
 </template>
 

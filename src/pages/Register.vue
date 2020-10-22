@@ -32,7 +32,7 @@ export default {
         if ((data.email != '' && data.password != '') && (data.password === data.repeat_password)) {
           axios({
             method: 'post',
-            url: 'http://localhost:3000/api/users/register',
+            url: 'https://mypet-api.herokuapp.com/api/users/register',
             data: {
               email: data.email,
               password: data.password

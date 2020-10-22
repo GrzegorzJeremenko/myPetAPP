@@ -15,7 +15,7 @@
 </template>
 
 <script>
-const axios = require('axios')
+const auth = require('../api')
 
 export default {
   name: 'Login',
@@ -30,23 +30,9 @@ export default {
         let data = this
 
         if (data.email != '' && data.password != '') {
-          axios({
-            method: 'post',
-            url: 'https://mypet-api.herokuapp.com/api/users/login',
-            data: {
-              email: data.email,
-              password: data.password
-            }
-          })
-          .then(function(res) {
-            console.log(res)
-            if (res.status === 200) {
-              localStorage.setItem('user', JSON.stringify({ token: res.data.token, refresh_token: res.data.refresh_token }))
-              console.log("OK")
-              data.$router.push('/')
-            }
-          })
-          .catch(function(err) { console.log(err) })
+          auth.authentication.login(data.email, data.password)
+          .then(() => data.$router.push('/'))
+          .catch(err => console.log(err))
         }
       }
     }
