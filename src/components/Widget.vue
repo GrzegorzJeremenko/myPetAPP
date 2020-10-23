@@ -44,6 +44,12 @@
             secondColor: '#e74c3c',
             icon: '&#xE805;',
           },
+          {
+            // Temp
+            firstColor: '#8e44ad',
+            secondColor: '#9b59b6',
+            icon: '&#xE807;',
+          },
         ]
       }
     },

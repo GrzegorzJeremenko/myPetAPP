@@ -1,6 +1,11 @@
 <template>
   <section id="list">
     <widget 
+      type="4"
+      title="Pimpek"
+      desc="Test1"
+    />
+    <widget 
       type="0"
       title="Pimpek"
       desc="Test1"
