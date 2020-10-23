@@ -7,13 +7,45 @@
             <h2>test@test.pl</h2>
         </div>
     </div>
-    <i class="icon">&#xE801;</i>
+    <i
+      class="icon"
+      @click="openNotifi()"
+    >
+      {{ displayIcon(this.notifiBar)}}
+    </i>
+    <transition name="slide-fade">
+      <notification-bar v-show="notifiBar" />
+    </transition>
   </section>
 </template>
 
 <script>
+  import NotificationBar from './NotificationBar.vue';
+
   export default {
     name: 'ProfileBar',
+    components: {
+      NotificationBar
+    },
+    data() {
+      return {
+        notifiBar: false
+      }
+    },
+    methods: {
+      openNotifi() {
+        this.notifiBar = !this.notifiBar;
+      },
+      displayIcon(x) {
+        let str = '&#xE801;';
+
+        if(x != false) str = '&#xF0F3;';
+
+        let parser = new DOMParser();
+        let dom = parser.parseFromString('<!doctype html><body>' + str, 'text/html');
+        return dom.body.textContent;
+      },
+    }
   }
 </script>
 
@@ -29,6 +61,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    z-index: 999;
   }
 
   section#profileBar i {
@@ -60,5 +93,16 @@
     width: 50px;
     height: 50px;
     border-radius: 5px;
+  }
+
+  .slide-fade-enter-active {
+    transition: all 250ms ease;
+  }
+  .slide-fade-leave-active {
+    transition: all 250ms cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateY(-80px);
+    opacity: 0;
   }
 </style>
