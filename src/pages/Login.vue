@@ -15,7 +15,7 @@
 </template>
 
 <script>
-const auth = require('../api')
+const api = require('../api')
 
 export default {
   name: 'Login',
@@ -30,7 +30,7 @@ export default {
         let data = this
 
         if (data.email != '' && data.password != '') {
-          auth.authentication.login(data.email, data.password)
+          api.authentication.login(data.email, data.password)
           .then(() => data.$router.push('/'))
           .catch(err => console.log(err))
         }

@@ -5,6 +5,8 @@ import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
 import Home from './pages/Home.vue'
 import Welcome from './pages/Welcome.vue'
+import MyPets from './pages/MyPets.vue'
+import Settings from './pages/Settings.vue'
 
 Vue.use(Router)
 
@@ -14,6 +16,8 @@ export const router = new Router({
         { path: '/welcome', component: Welcome },
         { path: '/login', component: Login },
         { path: '/register', component: Register },
+        { path: '/mypets', component: MyPets },
+        { path: '/settings', component: Settings },
     
         { path: '*', redirect: '/' }
     ]
