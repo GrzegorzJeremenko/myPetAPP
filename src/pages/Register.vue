@@ -3,6 +3,8 @@
     <div>myPet - Rejestracja</div>
     <h1>Witamy</h1>
       <form @submit.prevent="onSubmit">
+        <input type="text" placeholder="Imię" name="firstName" id="firstName" v-model="firstName">
+        <input type="text" placeholder="Nazwisko" name="lastName" id="lastName" v-model="lastName">
         <input type="email" placeholder="E-mail" name="email" id="email" v-model="email">
         <input type="password" placeholder="Hasło" name="password" id="password" v-model="password">
         <input type="password" placeholder="Powtórz hasło" name="repeat_password" id="repeat_password" v-model="repeat_password">
@@ -14,12 +16,14 @@
 </template>
 
 <script>
-const axios = require('axios')
+const api = require('../api')
 
 export default {
   name: 'Register',
   data() {
     return {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       repeat_password: ""
@@ -29,24 +33,10 @@ export default {
       onSubmit() {
         let data = this
 
-        if ((data.email != '' && data.password != '') && (data.password === data.repeat_password)) {
-          axios({
-            method: 'post',
-            url: 'https://mypet-api.herokuapp.com/api/users/register',
-            data: {
-              email: data.email,
-              password: data.password
-            }
-          })
-          .then(function(res) {
-            console.log(res)
-            if (res.status === 200) {
-              localStorage.setItem('user', JSON.stringify({ token: res.data.token, refresh_token: res.data.refresh_token }))
-              console.log("OK")
-              data.$router.push('/')
-            }
-          })
-          .catch(function(err) { console.log(err) })
+        if ((data.firstName != '' && data.lastName != '' && data.email != '' && data.password != '') && (data.password === data.repeat_password)) {
+          api.authentication.register(data.firstName, data.lastName, data.email, data.password)
+          .then(() => data.$router.push('/'))
+          .catch(err => console.log(err))
         }
       }
     }

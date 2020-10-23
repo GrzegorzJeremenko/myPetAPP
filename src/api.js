@@ -64,21 +64,24 @@ function login(email, password) {
     })
 }
 
-function register(email, password) {
+function register(firstName, lastName, email, password) {
     return new Promise((resolve, reject) => {
         axios({
             method: 'post',
             url: 'https://mypet-api.herokuapp.com/api/users/register',
             data: {
-              email: email,
-              password: password
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
             }
           })
           .then((res) => {
-            if (res.status === 200) {
-              localStorage.setItem('user', JSON.stringify({ token: res.data.token, refresh_token: res.data.refresh_token }))
-              resolve(res)
-            }
+              if (res.status === 201) {
+                login(email, password)
+                  .then(() => resolve())
+                  .catch((err) => reject(err))
+              }
           })
           .catch((err) => { 
               localStorage.removeItem('user')
