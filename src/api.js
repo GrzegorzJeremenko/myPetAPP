@@ -1,6 +1,45 @@
 const axios = require('axios')
 import jwt_decode from 'jwt-decode'
 
+axios.interceptors.response.use((response) => {
+    return response
+}, (error) => {
+    if (error.response.status !== 401 && error.response.status !== 400) {
+        return Promise.reject(error)
+    }
+
+    if (error.config.url == "https://mypet-api.herokuapp.com/api/users/refresh_token") {
+        logout()
+        window.location.reload()
+        return Promise.reject(error)
+    }
+
+    return new Promise((resolve, reject) => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        axios({
+            method: 'post',
+            url: 'https://mypet-api.herokuapp.com/api/users/refresh_token',
+            data: {
+                token: user.token,
+                refresh_token: user.refresh_token
+            }
+        })
+        .then((res) => {
+            localStorage.setItem('user', JSON.stringify({ userId: user.userId, token: res.data.new_token, refresh_token: res.data.new_refresh_token }))
+            resolve(res.data.new_token)
+        })
+        .catch(err => {
+            reject(err)
+        })
+    })
+    .then(() => {
+        window.location.reload()
+    })
+    .catch(err => {
+        Promise.reject(err)
+    })
+})
+
 function login(email, password) {
     return new Promise((resolve, reject) => {
         axios({
