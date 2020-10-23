@@ -1,16 +1,35 @@
 <template>
   <section id="list">
-    <water-widget />
+    <widget 
+      type="0"
+      title="Pimpek"
+      desc="Test1"
+    />
+    <widget 
+      type="1"
+      title="Pimpek1"
+      desc="Test2"
+    />
+    <widget 
+      type="2"
+      title="Pimpek2"
+      desc="Test3"
+    />
+    <widget 
+      type="3"
+      title="Pimpek3"
+      desc="Test4"
+    />
   </section>
 </template>
 
 <script>
-  import WaterWidget from '../components/WaterWidget.vue';
+  import Widget from '../components/Widget.vue';
 
   export default {
     name: 'Home',
     components: {
-      WaterWidget
+      Widget
     }
   }
 
@@ -19,7 +38,7 @@
 <style scoped>
   section#list {
     width: 100vw;
-    min-height: 200vh;
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
