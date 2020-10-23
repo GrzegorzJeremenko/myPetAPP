@@ -106,6 +106,9 @@
             imgNow() {
                 return "./img/welcome/" + ( this.pageNow + 1 ) + ".png";
             }
+        },
+        created: function () {
+            if (localStorage.getItem('user') !== null) this.$router.push('/');
         }
     }
 </script>
