@@ -3,8 +3,8 @@
     <div id="profileBar">
         <img src="../assets/profile.png" />
         <div id="data">
-            <h1>Test Testowy</h1>
-            <h2>test@test.pl</h2>
+            <h1>{{ firstName }} {{ lastName }}</h1>
+            <h2>{{ email }}</h2>
         </div>
     </div>
     <i
@@ -21,6 +21,7 @@
 
 <script>
   import NotificationBar from './NotificationBar.vue';
+  const api = require('../api')
 
   export default {
     name: 'ProfileBar',
@@ -29,7 +30,10 @@
     },
     data() {
       return {
-        notifiBar: false
+        notifiBar: false,
+        firstName: "",
+        lastName: "",
+        email: "",
       }
     },
     methods: {
@@ -45,6 +49,18 @@
         let dom = parser.parseFromString('<!doctype html><body>' + str, 'text/html');
         return dom.body.textContent;
       },
+      getUserdata() {
+        api.user.getData(api.user.getId())
+        .then((userData) => {
+          this.firstName = userData.data.data.firstName
+          this.lastName = userData.data.data.lastName
+          this.email = userData.data.data.email
+        })
+        .catch(err => console.log(err))
+      }
+    },
+    beforeMount() {
+        this.getUserdata()
     }
   }
 </script>

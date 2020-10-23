@@ -105,9 +105,7 @@ function getPets(userId) {
 
             reject()
         })
-        .catch((err) => {
-            reject(err)
-        })
+        .catch((err) => reject(err))
     })
 }
 
@@ -129,9 +127,25 @@ function changePassword(userId, old_password, new_password) {
 
             reject()
         })
-        .catch((err) => {
-            reject(err)
+        .catch((err) => reject(err))
+    })
+}
+
+function getData(userId) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'get',
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}`,
+            headers: authHeader()
         })
+        .then((res) => {
+            if (res.status === 200) {
+                resolve(res)
+            }
+
+            reject()
+        })
+        .catch(err => reject(err))
     })
 }
 
@@ -149,9 +163,7 @@ function removeAccount(userId) {
 
             reject()
         })
-        .catch((err) => {
-            reject(err)
-        })
+        .catch((err) => reject(err))
     })
 }
 
@@ -183,6 +195,7 @@ export const authentication = {
 export const user = {
     getPets,
     getId,
+    getData,
     changePassword,
     removeAccount
 }
