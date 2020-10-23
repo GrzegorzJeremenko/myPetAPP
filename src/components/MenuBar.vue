@@ -68,9 +68,13 @@
             return dom.body.textContent;
         },
         change(pageName, id) {
-            for(let option of this.options) option.select = false;
-            this.options[id].select = true;
-            this.$router.push(pageName);
+            if(id != 2) {
+                for(let option of this.options) option.select = false;
+                this.options[id].select = true;
+                this.$router.push(pageName);
+            } else {
+                console.log("SYNC")
+            }
         }
     }
 }
