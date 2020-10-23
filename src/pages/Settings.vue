@@ -1,8 +1,8 @@
 <template>
   <section id="settings">
       <h1>Ustawienia</h1>
-      <button @click="logout">Zmień hasło</button>
-      <button @click="logout">Usuń konto</button>
+      <button @click="changePassword">Zmień hasło</button>
+      <button @click="removeAccount">Usuń konto</button>
       <button
         @click="logout"
         style="border: none;"
@@ -17,6 +17,17 @@
   export default {
     name: 'Settings',
     methods: {
+      changePassword() {
+        api.user.changePassword()
+      },
+      removeAccount() {
+        api.user.removeAccount(api.user.getId())
+        .then(() => {
+            api.authentication.logout()
+            window.location.reload()
+        })
+        .catch(err => console.log(err))
+      },
       logout() {
         api.authentication.logout();
         this.$router.push('/login');

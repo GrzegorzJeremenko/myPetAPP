@@ -1,4 +1,5 @@
 const axios = require('axios')
+import jwt_decode from 'jwt-decode'
 
 function login(email, password) {
     return new Promise((resolve, reject) => {
@@ -12,8 +13,9 @@ function login(email, password) {
           })
           .then((res) => {
             if (res.status === 200) {
-              localStorage.setItem('user', JSON.stringify({ token: res.data.token, refresh_token: res.data.refresh_token }))
-              resolve(res)
+                let decoded = jwt_decode(res.data.token)
+                localStorage.setItem('user', JSON.stringify({ userId: decoded.userId, token: res.data.token, refresh_token: res.data.refresh_token }))
+                resolve()
             }
           })
           .catch((err) => { 
@@ -70,6 +72,50 @@ function getPets(userId) {
     })
 }
 
+function changePassword(userId, old_password, new_password) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'post',
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}/change_password`,
+            data: {
+                old_password: old_password,
+                new_password: new_password,
+            },
+            headers: authHeader()
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                resolve(res)
+            }
+
+            reject()
+        })
+        .catch((err) => {
+            reject(err)
+        })
+    })
+}
+
+function removeAccount(userId) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'delete',
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}`,
+            headers: authHeader()
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                resolve(res)
+            }
+
+            reject()
+        })
+        .catch((err) => {
+            reject(err)
+        })
+    })
+}
+
 function authHeader() {
     let user = JSON.parse(localStorage.getItem('user'))
 
@@ -80,6 +126,15 @@ function authHeader() {
     }
 }
 
+function getId() {
+    if (!JSON.parse(localStorage.getItem('user')).userId) {
+        logout()
+        window.location.reload()
+    }
+
+    return JSON.parse(localStorage.getItem('user')).userId
+}
+
 export const authentication = {
     login,
     register,
@@ -87,5 +142,8 @@ export const authentication = {
 }
 
 export const user = {
-    getPets
+    getPets,
+    getId,
+    changePassword,
+    removeAccount
 }

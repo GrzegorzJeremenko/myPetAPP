@@ -1,7 +1,7 @@
 <template>
   <section id="list">
       <ul>
-          <li v-for="pet in pets" :key="pet.id">
+          <li v-for="pet in pets" :key="pet._id">
               id - {{ pet._id }}
               name - {{ pet.name }}
           </li>
@@ -21,7 +21,7 @@ const api = require('../api')
     },
     methods: {
         getPets() {
-            api.user.getPets('5f87f37fa580f51f38c15a6c')
+            api.user.getPets(api.user.getId())
             .then((res) => {
                 this.pets = res.data.data
             })
