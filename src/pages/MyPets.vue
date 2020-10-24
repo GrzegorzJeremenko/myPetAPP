@@ -57,7 +57,7 @@
     font-weight: 400;
     letter-spacing: .7px;
     height: 2.75rem;
-    margin: 0.5rem 0;
+    margin: 1.5rem 0 0 0.5rem;
     -webkit-box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.75);
