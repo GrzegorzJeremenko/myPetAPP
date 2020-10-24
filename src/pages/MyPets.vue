@@ -1,5 +1,6 @@
 <template>
   <section id="list">
+      <button @click="addPet()">Dodaj</button>
       <ul>
           <li v-for="pet in pets" :key="pet._id">
               id - {{ pet._id }}
@@ -26,6 +27,9 @@ const api = require('../api')
                 this.pets = res.data.data
             })
             .catch((err) => console.log(err))
+        },
+        addPet() {
+            this.$router.push('/mypets/add')
         }
     },
     beforeMount() {

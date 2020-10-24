@@ -112,6 +112,29 @@ function getPets(userId) {
     })
 }
 
+function addPet(userId, name, birthDate, code) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'post',
+            url: `http://localhost:3000/api/users/${userId}/pets/add`,
+            data: {
+                name: name,
+                birthDate: birthDate,
+                code: code
+            },
+            headers: authHeader()
+        })
+        .then((res) => {
+            if (res.status === 201) {
+                resolve()
+            }
+
+            reject()
+        })
+        .catch(err => reject(err))
+    })
+}
+
 function changePassword(userId, old_password, new_password) {
     return new Promise((resolve, reject) => {
         axios({
@@ -196,6 +219,7 @@ export const authentication = {
 }
 
 export const user = {
+    addPet,
     getPets,
     getId,
     getData,

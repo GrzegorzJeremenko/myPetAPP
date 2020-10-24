@@ -20,7 +20,7 @@
     props: ['title', 'desc'],
     methods: {
         close() {
-            this.$destroy();
+            this.$el.parentNode.removeChild(this.$el)
         }
     }
   }

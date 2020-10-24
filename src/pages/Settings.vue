@@ -18,7 +18,7 @@
     name: 'Settings',
     methods: {
       changePassword() {
-        api.user.changePassword()
+        this.$router.push('/settings/change_password')
       },
       removeAccount() {
         api.user.removeAccount(api.user.getId())
