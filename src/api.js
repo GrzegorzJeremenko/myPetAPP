@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 axios.interceptors.response.use((response) => {
     return response
 }, (error) => {
-    if (error.response.status !== 401 && error.response.status !== 400) {
+    if (error.response.status !== 401) {
         return Promise.reject(error)
     }
 
@@ -175,11 +175,47 @@ function getData(userId) {
     })
 }
 
+function getPetData(userId, petId) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'get',
+            url: `http://localhost:3000/api/users/${userId}/pets/${petId}`,
+            headers: authHeader()
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                resolve(res)
+            }
+
+            reject()
+        })
+        .catch((err) => reject(err))
+    })
+}
+
 function removeAccount(userId) {
     return new Promise((resolve, reject) => {
         axios({
             method: 'delete',
             url: `https://mypet-api.herokuapp.com/api/users/${userId}`,
+            headers: authHeader()
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                resolve(res)
+            }
+
+            reject()
+        })
+        .catch((err) => reject(err))
+    })
+}
+
+function getNotifications(userId) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'get',
+            url: `http://localhost:3000/api/users/${userId}/notifications`,
             headers: authHeader()
         })
         .then((res) => {
@@ -223,6 +259,8 @@ export const user = {
     getPets,
     getId,
     getData,
+    getPetData,
+    getNotifications,
     changePassword,
     removeAccount
 }

@@ -12,6 +12,7 @@
 
 <script>
   import Notification from './Notification.vue';
+  const api = require('../api')
 
   export default {
     name: 'NotificationBar',
@@ -49,7 +50,35 @@
       closeNotifi(element) {
         const notifiIndex = this.notifications.indexOf(element);
         this.notifications.splice(notifiIndex, 1);
+      },
+      getNotifications() {
+        api.user.getNotifications(api.user.getId())
+        .then((res) => {
+          let data = []
+          let notifications = res.data.data
+
+          let types = {
+            low_temp: "Za niska temperatura",
+            high_temp: "Za wysoka temperatura"
+          }
+
+          for(let notification in notifications) {
+            api.user.getPetData(api.user.getId(), notifications[notification].petId)
+            .then((petData) => {
+              data.push({
+                id: notifications[notification]._id,
+                title: types[notifications[notification].type] + ' - ',
+                desc: petData.data.data.name
+              })
+            })
+          }
+          this.notifications = data
+        })
+        .catch(err => console.log(err))
       }
+    },
+    beforeMount() {
+        this.getNotifications()
     },
     created: function () {
       this.notifiCount = this.notifications.length;
