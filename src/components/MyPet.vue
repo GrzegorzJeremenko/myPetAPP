@@ -1,7 +1,7 @@
 <template>
   <section class="pet">
     <i class="icon">&#xF1B0;</i>
-    <div id="data">
+    <div id="data" @click="showPet(element._id)">
       <h1>{{ element.name }}</h1>
     </div>
   </section>
@@ -10,7 +10,12 @@
 <script>
   export default {
     name: 'MyPet',
-    props: ['element']
+    props: ['element'],
+    methods: {
+      showPet(petId) {
+        this.$router.push(`/mypets/show/${petId}`)
+      }
+    }
   }
 </script>
 

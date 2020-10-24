@@ -22,26 +22,6 @@
     data() {
       return {
         notifications: [
-          {
-            id: 0,
-            title: 'Niska temeperatura - ',
-            desc: 'Pimpek',
-          },
-          {
-            id: 1,
-            title: 'Niska temeperatura - ',
-            desc: 'Pimpek2',
-          },
-          {
-            id: 2,
-            title: 'Niska temeperatura - ',
-            desc: 'Pimpek3',
-          },
-          {
-            id: 3,
-            title: 'Niska temeperatura - ',
-            desc: 'Pimpek4',
-          }
         ],
         notifiCount: 0
       }

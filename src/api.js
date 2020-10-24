@@ -8,11 +8,11 @@ axios.interceptors.response.use((response) => {
         return Promise.reject(error)
     }
 
-    if (error.config.url == "https://mypet-api.herokuapp.com/api/users/refresh_token") {
-        logout()
-        window.location.reload()
-        return Promise.reject(error)
-    }
+    // if (error.config.url == "https://mypet-api.herokuapp.com/api/users/refresh_token") {
+    //     logout()
+    //     window.location.reload()
+    //     return Promise.reject(error)
+    // }
 
     return new Promise((resolve, reject) => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -116,7 +116,7 @@ function addPet(userId, name, birthDate, code) {
     return new Promise((resolve, reject) => {
         axios({
             method: 'post',
-            url: `http://localhost:3000/api/users/${userId}/pets/add`,
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}/pets/add`,
             data: {
                 name: name,
                 birthDate: birthDate,
@@ -179,7 +179,7 @@ function getPetData(userId, petId) {
     return new Promise((resolve, reject) => {
         axios({
             method: 'get',
-            url: `http://localhost:3000/api/users/${userId}/pets/${petId}`,
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}/pets/${petId}`,
             headers: authHeader()
         })
         .then((res) => {
@@ -215,7 +215,25 @@ function getNotifications(userId) {
     return new Promise((resolve, reject) => {
         axios({
             method: 'get',
-            url: `http://localhost:3000/api/users/${userId}/notifications`,
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}/notifications`,
+            headers: authHeader()
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                resolve(res)
+            }
+
+            reject()
+        })
+        .catch((err) => reject(err))
+    })
+}
+
+function getPetCollarData(userId, petId) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'get',
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}/pets/${petId}/data`,
             headers: authHeader()
         })
         .then((res) => {
@@ -260,6 +278,7 @@ export const user = {
     getId,
     getData,
     getPetData,
+    getPetCollarData,
     getNotifications,
     changePassword,
     removeAccount
