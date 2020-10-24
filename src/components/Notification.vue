@@ -1,8 +1,8 @@
 <template>
-  <section id="notification">
+  <section class="notification">
         <i class="icon">&#xE808;</i>
         <h1>
-            <b>{{ title }}</b>{{ desc }}
+            <b>{{ element.title }}</b>{{ element.desc }}
         </h1>
         <i 
             class="icon"
@@ -17,31 +17,32 @@
 <script>
   export default {
     name: 'Notification',
-    props: ['title', 'desc'],
+    props: ['element'],
     methods: {
-        close() {
-            this.$el.parentNode.removeChild(this.$el)
-        }
+      close() {
+        this.$emit('close', this.element);
+      }
     }
   }
 </script>
 
 <style scoped>
-  section#notification {
-    width: 100%;
+  section.notification {
+    width: 90%;
     height: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    border-top: 1px solid #ddd;
   }
 
-  section#notification i {
+  section.notification i {
     font-size: 16px;
     margin: 0 10px 0 10px;
   }
 
-  section#notification b {
+  section.notification b {
     font-weight: 600;
   }
 </style>
