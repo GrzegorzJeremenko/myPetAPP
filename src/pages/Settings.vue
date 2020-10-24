@@ -39,7 +39,7 @@
 <style scoped>
   section#settings {
     width: 100vw;
-    min-height: 200vh;
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;

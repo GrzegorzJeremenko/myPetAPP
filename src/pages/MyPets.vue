@@ -16,9 +16,9 @@ const api = require('../api')
   export default {
     name: 'MyPets',
     data() {
-        return {
-            pets: []
-        }
+      return {
+        pets: []
+      }
     },
     methods: {
         getPets() {
@@ -42,7 +42,7 @@ const api = require('../api')
 <style scoped>
   section#list {
     width: 100vw;
-    min-height: 200vh;
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
