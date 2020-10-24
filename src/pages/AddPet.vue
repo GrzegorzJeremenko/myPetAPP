@@ -37,7 +37,7 @@ const api = require('../api')
 <style scoped>
   section#addPet {
     width: 100vw;
-    min-height: 200vh;
+    min-height: calc(100vh - 80px);
     align-items: center;
     margin: 80px 0 0 0;
   }
