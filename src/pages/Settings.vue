@@ -7,7 +7,7 @@
         @click="logout"
         style="border: none;"
       >Wyloguj się</button>
-      <h2>v1.0 myPet &copy; 2020</h2>
+      <h2>v1.33 myPet &copy; 2020</h2>
   </section>
 </template>
 

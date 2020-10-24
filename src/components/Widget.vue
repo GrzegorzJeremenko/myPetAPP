@@ -76,6 +76,9 @@
     display: flex;
     flex-direction: row;
     margin: 20px 0 0 0;
+    -webkit-box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.75);
   }
 
   section#widget div#data {

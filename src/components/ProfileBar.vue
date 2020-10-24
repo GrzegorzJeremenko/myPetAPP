@@ -78,6 +78,9 @@
     justify-content: space-around;
     align-items: center;
     z-index: 999;
+    -webkit-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.75);
   }
 
   section#profileBar i {
