@@ -8,11 +8,11 @@ axios.interceptors.response.use((response) => {
         return Promise.reject(error)
     }
 
-    // if (error.config.url == "https://mypet-api.herokuapp.com/api/users/refresh_token") {
-    //     logout()
-    //     window.location.reload()
-    //     return Promise.reject(error)
-    // }
+    if (error.config.url == "https://mypet-api.herokuapp.com/api/users/refresh_token") {
+        logout()
+        window.location.reload()
+        return Promise.reject(error)
+    }
 
     return new Promise((resolve, reject) => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -111,6 +111,26 @@ function getPets(userId) {
         .catch((err) => reject(err))
     })
 }
+
+function getRandomPet(userId) {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'get',
+            url: `https://mypet-api.herokuapp.com/api/users/${userId}/pets`,
+            headers: authHeader()
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                let data = res.data.data
+                resolve(data[Math.floor(Math.random() * data.length)])
+            }
+
+            reject()
+        })
+        .catch((err) => reject(err))
+    })
+}
+
 
 function addPet(userId, name, birthDate, code) {
     return new Promise((resolve, reject) => {
@@ -275,6 +295,7 @@ export const authentication = {
 export const user = {
     addPet,
     getPets,
+    getRandomPet,
     getId,
     getData,
     getPetData,

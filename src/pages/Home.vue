@@ -2,27 +2,27 @@
   <section id="list">
     <widget 
       type="4"
-      title="Pimpek"
+      :title="name"
       :desc="temp"
     />
     <widget 
       type="0"
-      title="Pimpek"
+      :title="name"
       :desc="water"
     />
     <widget 
       type="1"
-      title="Pimpek1"
+      :title="name"
       :desc="steps"
     />
     <widget 
       type="2"
-      title="Pimpek2"
+      :title="name"
       :desc="food"
     />
     <widget 
       type="3"
-      title="Pimpek3"
+      :title="name"
       :desc="heart"
     />
   </section>
@@ -39,6 +39,7 @@
     },
     data() {
       return {
+        name: "-",
         temp: "",
         water: "",
         steps: "",
@@ -48,17 +49,21 @@
     },
     methods: {
         getPetCollarData() {
-            api.user.getPetCollarData(api.user.getId(), '5f94241f3b767507afd502c9')
+          api.user.getRandomPet(api.user.getId())
+          .then((pet) => {
+            api.user.getPetCollarData(api.user.getId(), pet._id)
             .then((res) => {
                 let data = res.data.data
-                console.log(data)
-                this.heart = data.heart[data.heart.length - 1].data + " BPM"
-                this.steps = this.getStep( data.steps[data.steps.length - 1].data )
-                this.temp = data.temp[data.temp.length - 1].data + " °C"
-                this.water = this.getEatName( data.water[data.water.length - 1].data )
-                this.food = this.getEatName( data.food[data.food.length - 1].data )
+                this.name = pet.name
+                this.heart = data.heart.length !== 0 ? data.heart[data.heart.length - 1].data + " BPM" : "Brak danych"
+                this.steps = data.steps.length !== 0 ? this.getStep( data.steps[data.steps.length - 1].data ) : "Brak danych"
+                this.temp = data.temp.length !== 0 ? data.temp[data.temp.length - 1].data + " °C" : "Brak danych"
+                this.water = data.water.length !== 0 ? this.getEatName( data.water[data.water.length - 1].data ) : "Brak danych"
+                this.food = data.food.length !== 0 ? this.getEatName( data.food[data.food.length - 1].data ) : "Brak danych"
             })
             .catch((err) => console.log(err))
+          })
+          .catch((err) => console.log(err))
         },
         getStep(steps) {
           if( steps == 0 ) return steps + " kroków"
