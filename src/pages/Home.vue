@@ -52,13 +52,24 @@
             .then((res) => {
                 let data = res.data.data
                 console.log(data)
-                this.heart = data.heart[data.heart.length - 1].data
-                this.steps = data.steps[data.steps.length - 1].data
-                this.temp = data.temp[data.temp.length - 1].data
-                this.water = data.water[data.water.length - 1].data
-                this.food = data.food[data.food.length - 1].data
+                this.heart = data.heart[data.heart.length - 1].data + " BPM"
+                this.steps = this.getStep( data.steps[data.steps.length - 1].data )
+                this.temp = data.temp[data.temp.length - 1].data + " °C"
+                this.water = this.getEatName( data.water[data.water.length - 1].data )
+                this.food = this.getEatName( data.food[data.food.length - 1].data )
             })
             .catch((err) => console.log(err))
+        },
+        getStep(steps) {
+          if( steps == 0 ) return steps + " kroków"
+          else if( steps == 1 ) return steps + " krok"
+          else if( ( steps >= 2 ) && ( steps <= 4) ) return steps + " kroki"
+          else return steps + " kroków"
+        },
+        getEatName(water) {
+          if( water == 0 ) return water + " razy"
+          else if( water == 1 ) return water + " raz"
+          else return water + " razy"
         }
     },
     beforeMount() {

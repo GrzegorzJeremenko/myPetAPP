@@ -73,7 +73,7 @@
                 this.options[id].select = true;
                 this.$router.push(pageName);
             } else {
-                console.log("SYNC")
+                document.location.reload(true);
             }
         }
     }
